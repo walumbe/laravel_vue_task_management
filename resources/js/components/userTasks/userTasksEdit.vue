@@ -6,43 +6,44 @@
         </p>
       </div>
     </div>
-    <form class="space-y-6" v-on:submit.prevent="saveCompany">
+    <form class="space-y-6" v-on:submit.prevent="saveUserTask">
         <div class="space-y-4 rounded-md shadow-sm">
             <div>
-                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <label for="due_date" class="block text-sm font-medium text-gray-700">Due Date</label>
                 <div class="mt-1">
-                    <input type="text" name="name" id="name"
+                    <input type="date" name="due_date" id="due_date"
                            class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           v-model="company.name">
+                           v-model="userTask.due_date">
                 </div>
             </div>
 
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <label for="start_time" class="block text-sm font-medium text-gray-700">Start Time</label>
                 <div class="mt-1">
-                    <input type="text" name="email" id="email"
+                    <input type="time" name="time" id="time"
                            class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           v-model="company.email">
+                           v-model="userTask.start_time">
                 </div>
             </div>
 
             <div>
-                <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                <label for="end_time" class="block text-sm font-medium text-gray-700">End Time</label>
                 <div class="mt-1">
-                    <input type="text" name="address" id="address"
+                    <input type="time" name="end_time" id="end_time"
                            class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           v-model="company.address">
+                           v-model="userTask.end_time">
                 </div>
             </div>
 
             <div>
-                <label for="website" class="block text-sm font-medium text-gray-700">Website</label>
+                <label for="address" class="block text-sm font-medium text-gray-700">Remarks</label>
                 <div class="mt-1">
-                    <input type="text" name="website" id="website"
+                    <input type="text" name="remarks" id="remarks"
                            class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           v-model="company.website">
+                           v-model="userTask.remarks">
                 </div>
             </div>
+
         </div>
 
         <button type="submit"
@@ -53,7 +54,7 @@
 </template>
 
 <script>
-import useCompanies from "../../composables/companies";
+import userTasks from "../../composables/userTasks";
 import {onMounted} from "vue";
 
 export default {
@@ -65,18 +66,18 @@ export default {
     },
 
     setup(props) {
-        const { errors, company, getCompany, updateCompany } = useCompanies()
+        const { errors, userTask, getUserTask, updateUserTask } = userTasks()
 
-        onMounted(getCompany(props.id))
+        onMounted(getUserTask(props.id))
 
-        const saveCompany = async () => {
-            await updateCompany(props.id)
+        const saveUserTask = async () => {
+            await updateUserTask(props.id)
         }
 
         return {
             errors,
-            company,
-            saveCompany
+            userTask,
+            saveUserTask
         }
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\TaskResource;
 use App\Http\Requests\TaskRequest;
 use App\Models\Task;
@@ -15,12 +17,24 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        return TaskResource::collection(Task::all());
+        // $user = Auth::user();
+        // if (!$user) {
+        
+        //     return response()->json(['status' => false, 'message' => 'User not authenticated.'], 401);
+        // }
+
+        $data = DB::table('tasks')
+            ->join('statuses', 'statuses.id', '=', 'tasks.status_id')
+            ->select('tasks.name', 'tasks.description', 'tasks.due_date', 'statuses.name as status')
+            ->get();
+
+        // return response()->json(['status' => true, 'data' => $data]);
+        return TaskResource::collection($data);
     }
 
-    
     public function store(TaskRequest $request)
     {
 
