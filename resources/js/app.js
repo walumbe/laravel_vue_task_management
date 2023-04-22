@@ -9,7 +9,6 @@ import userTasksIndex from './components/userTasks/userTasksIndex'
 
 createApp({
     components: {
-        CompaniesIndex,
         TasksIndex,
         userTasksIndex
     }

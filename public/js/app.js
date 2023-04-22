@@ -22673,7 +22673,7 @@ __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   components: {
-    CompaniesIndex: CompaniesIndex,
+    // TasksIndex: TasksIndex,
     TasksIndex: _components_tasks_TasksIndex__WEBPACK_IMPORTED_MODULE_2__["default"],
     userTasksIndex: _components_userTasks_userTasksIndex__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
