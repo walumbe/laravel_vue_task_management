@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import useTasks from "../../composables/tasks";
+ import useTasks from "../../composables/tasks";
 import {onMounted} from "vue";
 
 export default {
